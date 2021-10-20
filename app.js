@@ -6,21 +6,21 @@ const clearBtn = document.querySelector(".clear-tasks");
 const filter = document.querySelector("#filter");
 const taskInput = document.querySelector("#task");
 
-// Load all event listeners
-
-// Load all event Listeners function
+//-------------------------> Load all event Listeners function
 const loadEventListeners = () => {
-  // Add Task Event
+  // Add task Event
   form.addEventListener("submit", addTask);
   // Remove task event
   taskList.addEventListener("click", removeTask);
+  // Clear task event
+  clearBtn.addEventListener("click", clearTasks);
 };
-//Add Task function
+
+//---------------------->Add Task function
 const addTask = (e) => {
   if (taskInput.value === "") {
     alert("Add a task");
   }
-
   //Create li element
   const li = document.createElement("li");
   // Add class
@@ -41,7 +41,8 @@ const addTask = (e) => {
   taskInput.value = "";
   e.preventDefault();
 };
-// Remove task function
+
+//------------------------> Remove task function
 const removeTask = (e) => {
   if (e.target.parentElement.classList.contains("delete-item")) {
     console.log("is clicked");
@@ -49,6 +50,13 @@ const removeTask = (e) => {
       e.target.parentElement.parentElement.remove();
       console.log("is removed");
     }
+  }
+};
+
+// ----------------------> Clear tasks function
+const clearTasks = () => {
+  while (taskList.firstChild) {
+    taskList.removeChild(taskList.firstChild);
   }
 };
 
